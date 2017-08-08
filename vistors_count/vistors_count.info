@@ -1,0 +1,3 @@
+name = vistors_count
+description = creates a module for visitor
+core = 7.x

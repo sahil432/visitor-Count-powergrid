@@ -1,0 +1,62 @@
+<?php
+function vistors_count_init()
+{
+	global $language;
+
+$lang= $language->language;
+$current_date=format_date(time(), 'custom', ' M Y');	
+if($lang == 'en')
+{
+	$en=1;
+	$hi=0;
+}
+elseif($lang == 'hi')
+{
+	$hi=1;
+	$en=0;
+}
+
+	$result1 = db_select('vistors_count', 'n')
+            ->fields('n')
+			->condition('date',$current_date,'=')
+            ->execute();
+   $num_of_results = $result1->rowCount();
+   
+if($num_of_results > 0){
+	$records=$result1->fetchAll();
+	
+$nid = db_update('vistors_count') 
+->fields(array(
+  'en_count'=> $records[0]->en_count+$en ,
+  'hi_count' => $records[0]->hi_count+$hi,
+  'date' => $current_date ,
+ 
+))
+->condition('date',$current_date, '=')
+->execute();
+}
+else
+{
+	$nid = db_insert('vistors_count') 
+->fields(array(
+  'en_count'=>  $en ,
+  'hi_count' => $hi,
+  'date' => $current_date ,
+ 
+))
+
+->execute();
+	
+	
+	
+}
+
+
+	
+	
+}
+
+
+
+
+?>

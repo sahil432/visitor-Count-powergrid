@@ -1,0 +1,38 @@
+<?php
+	function vistors_count_schema(){
+		$schema['vistors_count'] = array(
+			'description'=>t('table created for Visitor Count'),
+			'fields' => array(
+				'id'=>array(
+					'type'=>'serial',
+					'not null'=>TRUE
+				),
+				'en_count' => array(
+					'type' => 'varchar',
+					'length' => 100,
+					'not null' => TRUE
+					
+				),
+				'hi_count' => array(
+					'type' => 'varchar',
+					'length' => 100,
+					'not null' => TRUE
+					
+				),
+				
+				'date' => array(
+			'description' => t('Date'),
+			'type' => 'varchar',
+			'length' => 100,
+			'not null' => TRUE,
+				),
+				
+				
+			),
+			'primary key' => array('id'),
+		);
+		
+		
+		
+		return $schema;
+   }
